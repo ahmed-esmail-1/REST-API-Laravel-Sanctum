@@ -22,4 +22,9 @@ class ProductController extends Controller
         ]);
         return Product::create($request->all());
     }
+
+    public function show($id)
+    {
+        return Product::find($id);
+    }
 }
