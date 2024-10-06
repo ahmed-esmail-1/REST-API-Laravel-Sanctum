@@ -34,4 +34,9 @@ class ProductController extends Controller
         $product->update($request->all());
         return  $product;
     }
+
+    public function destroy($id)
+    {
+        return product::destroy($id);
+    }
 }
