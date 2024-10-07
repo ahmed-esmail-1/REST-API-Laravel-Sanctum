@@ -25,6 +25,8 @@ Route::resource('products', ProductController::class);
 // |        api/products/{product}      | products.destroy   
 // |        api/products/{product}/edit | products.edit    
 
+Route::get('/products/search/{name}', [ProductController::class, 'search']);
+
 
 
 // No need for those
