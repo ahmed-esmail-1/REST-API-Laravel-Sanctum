@@ -16,20 +16,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('products', ProductController::class);
+// Public routes
+Route::get('/products', [ProductController::class, 'index']); // Display a list of all products
+Route::get('/products/{id}', [ProductController::class, 'show']); // Display a specific product
+Route::get('/products/search/{name}', [ProductController::class, 'search']);
 
 
-// Route::get('/products/search/{name}', [ProductController::class, 'search']);
 
 
+// Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/products/search/{name}', [ProductController::class, 'search']);
+    // add here protected routes
+    Route::post('/products', [ProductController::class, 'store']); // Store a newly created product
+    Route::put('/products/{id}', [ProductController::class, 'update']); // Update a specific product
+    Route::delete('/products/{id}', [ProductController::class, 'destroy']); // Delete a specific product
+
 });
 
 
 
 
 ###
+// Route::resource('products', ProductController::class);
+
+
+// Route::get('/products/search/{name}', [ProductController::class, 'search']);
+
 
 // The above route means
 // |        api/products                | products.index     
