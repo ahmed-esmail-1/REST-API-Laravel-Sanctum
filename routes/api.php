@@ -16,6 +16,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('products', ProductController::class);
+
+
+// Route::get('/products/search/{name}', [ProductController::class, 'search']);
+
+
+Route::middleware('auth:sanctum')->get('/user', function () {
+    Route::get('/products/search/{name}', [ProductController::class, 'search']);
+});
+
+
+
+
+###
+
 // The above route means
 // |        api/products                | products.index     
 // |        api/products                | products.store     
@@ -23,9 +37,7 @@ Route::resource('products', ProductController::class);
 // |        api/products/{product}      | products.show      
 // |        api/products/{product}      | products.update       
 // |        api/products/{product}      | products.destroy   
-// |        api/products/{product}/edit | products.edit    
-
-Route::get('/products/search/{name}', [ProductController::class, 'search']);
+// |        api/products/{product}/edit | products.edit  
 
 
 
