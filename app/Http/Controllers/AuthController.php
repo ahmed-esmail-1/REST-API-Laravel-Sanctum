@@ -32,4 +32,14 @@ class AuthController extends Controller
 
         return response($response, 201);
     }
+
+    // Because the tokens are stored in db, delete them, or set expiration time
+    public function logout(Request $request)
+    {
+        auth()->user()->tokens()->delete();
+
+        return [
+            'message' => 'Logged out'
+        ];
+    }
 }
